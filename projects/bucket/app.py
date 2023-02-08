@@ -33,6 +33,11 @@ def bucket_done():
     num_receive = request.form["num_give"]
     db.bucket.update_one({'num': int(num_receive)}, {'$set': {'done': 1}})
     return jsonify({'msg': '버킷 완료!'})
+@app.route("/bucket/delete", methods=["POST"])
+def bucket_delete():
+    num_receive = request.form["num_give"]
+    db.bucket.delete_one({'num': int(num_receive)})
+    return jsonify({'msg': '삭제!'})
 
 
 @app.route("/bucket", methods=["GET"])
