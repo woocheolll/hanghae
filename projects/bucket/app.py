@@ -11,7 +11,6 @@ def home():
 
     return render_template('index.html')
 
-
 @app.route("/bucket", methods=["POST"])
 def bucket_post():
     bucket_receive = request.form['bucket_give']
