@@ -44,5 +44,11 @@ def bucket_get():
     buckets_list = list(db.bucket.find({},{'_id':False}))
     return jsonify({'buckets':buckets_list})
 
+@app.route("/delete/bucket/done", methods=["POST"])
+def delete_done_bucket():
+    num_receive = request.form["num_give"]
+    db.bucket.update_one({'num': int(num_receive)}, {'$set': {'done': 0}})
+    return jsonify({'msg': '버킷 완료!'})
+
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
